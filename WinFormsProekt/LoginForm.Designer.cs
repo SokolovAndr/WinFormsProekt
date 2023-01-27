@@ -42,6 +42,7 @@
             // 
             // buttonVhod
             // 
+            this.buttonVhod.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonVhod.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonVhod.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonVhod.Location = new System.Drawing.Point(64, 191);
@@ -49,10 +50,14 @@
             this.buttonVhod.Size = new System.Drawing.Size(98, 32);
             this.buttonVhod.TabIndex = 11;
             this.buttonVhod.Text = "Войти";
-            this.buttonVhod.UseVisualStyleBackColor = true;
+            this.buttonVhod.UseVisualStyleBackColor = false;
+            this.buttonVhod.Click += new System.EventHandler(this.buttonVhod_Click);
+            this.buttonVhod.MouseEnter += new System.EventHandler(this.buttonVhod_MouseEnter);
+            this.buttonVhod.MouseLeave += new System.EventHandler(this.buttonVhod_MouseLeave);
             // 
             // buttonRegist
             // 
+            this.buttonRegist.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonRegist.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonRegist.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonRegist.Location = new System.Drawing.Point(186, 191);
@@ -60,7 +65,10 @@
             this.buttonRegist.Size = new System.Drawing.Size(123, 32);
             this.buttonRegist.TabIndex = 10;
             this.buttonRegist.Text = "Регистрация";
-            this.buttonRegist.UseVisualStyleBackColor = true;
+            this.buttonRegist.UseVisualStyleBackColor = false;
+            this.buttonRegist.Click += new System.EventHandler(this.buttonRegist_Click);
+            this.buttonRegist.MouseEnter += new System.EventHandler(this.buttonRegist_MouseEnter);
+            this.buttonRegist.MouseLeave += new System.EventHandler(this.buttonRegist_MouseLeave);
             // 
             // textBoxParol
             // 
