@@ -10,6 +10,7 @@ namespace WinFormsProekt
     public static class SingleTon
     {
         public static Users User { get; set; }
+        public static Zayavki Zayavka { get; set; }
         public static AppContext DB { get; set; }
         static SingleTon()
         {

@@ -41,6 +41,7 @@ namespace WinFormsProekt
         private void buttonRegist_Click(object sender, EventArgs e)
         {
             //создание экземпляра класса RegisterForm и вызов новой формы.
+            
             RegisterForm register = new RegisterForm();
             if (register.ShowDialog() == DialogResult.OK)
             {
@@ -64,9 +65,19 @@ namespace WinFormsProekt
             }
             SingleTon.User = user;
             Main main = new Main();
-            Hide();
+            //Hide();
             main.Show();
 
+        }
+
+        private void pictureBox3_MouseEnter(object sender, EventArgs e)
+        {
+            textBoxParol.UseSystemPasswordChar = false;
+        }
+
+        private void pictureBox3_MouseLeave(object sender, EventArgs e)
+        {
+            textBoxParol.UseSystemPasswordChar = true;
         }
     }
 }
