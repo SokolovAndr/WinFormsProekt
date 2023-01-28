@@ -64,8 +64,9 @@ namespace WinFormsProekt
             }
             SingleTon.User = user;
             Main main = new Main();
-            main.Show();
             Hide();
+            main.Show();
+
         }
     }
 }

@@ -81,6 +81,7 @@
             this.buttonOk.TabIndex = 4;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = false;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
             this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 

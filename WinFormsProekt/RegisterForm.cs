@@ -26,5 +26,17 @@ namespace WinFormsProekt
         {
             buttonOk.BackColor = Color.White;
         }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            if (SingleTon.DB.Users.Where(u => u.Login == textBoxLoginRegistr.Text).Count() > 0)
+            {
+                MessageBox.Show("Логин занят!");
+                return;
+            }
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
     }
 }

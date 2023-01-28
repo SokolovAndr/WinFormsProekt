@@ -16,5 +16,10 @@ namespace WinFormsProekt
         {
             InitializeComponent();
         }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
