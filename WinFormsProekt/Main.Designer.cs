@@ -33,12 +33,12 @@
             this.buttonRedact = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.buttonShowAll = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonShowAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +47,7 @@
             this.buttonClose.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonClose.Location = new System.Drawing.Point(551, 370);
+            this.buttonClose.Location = new System.Drawing.Point(545, 524);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(93, 43);
             this.buttonClose.TabIndex = 0;
@@ -110,11 +110,26 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            this.dataGridView1.Location = new System.Drawing.Point(70, 131);
+            this.dataGridView1.Location = new System.Drawing.Point(35, 131);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(574, 211);
+            this.dataGridView1.Size = new System.Drawing.Size(603, 375);
             this.dataGridView1.TabIndex = 5;
+            // 
+            // buttonShowAll
+            // 
+            this.buttonShowAll.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonShowAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShowAll.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonShowAll.Location = new System.Drawing.Point(35, 524);
+            this.buttonShowAll.Name = "buttonShowAll";
+            this.buttonShowAll.Size = new System.Drawing.Size(111, 43);
+            this.buttonShowAll.TabIndex = 6;
+            this.buttonShowAll.Text = "Показать все";
+            this.buttonShowAll.UseVisualStyleBackColor = false;
+            this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);
+            this.buttonShowAll.MouseEnter += new System.EventHandler(this.buttonShowAll_MouseEnter);
+            this.buttonShowAll.MouseLeave += new System.EventHandler(this.buttonShowAll_MouseLeave);
             // 
             // Column1
             // 
@@ -135,6 +150,7 @@
             // 
             this.Column4.HeaderText = "Статус";
             this.Column4.Name = "Column4";
+            this.Column4.Width = 130;
             // 
             // Column5
             // 
@@ -142,26 +158,12 @@
             this.Column5.Name = "Column5";
             this.Column5.Width = 130;
             // 
-            // buttonShowAll
-            // 
-            this.buttonShowAll.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonShowAll.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonShowAll.Location = new System.Drawing.Point(70, 370);
-            this.buttonShowAll.Name = "buttonShowAll";
-            this.buttonShowAll.Size = new System.Drawing.Size(111, 43);
-            this.buttonShowAll.TabIndex = 6;
-            this.buttonShowAll.Text = "Показать все";
-            this.buttonShowAll.UseVisualStyleBackColor = false;
-            this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);
-            this.buttonShowAll.MouseEnter += new System.EventHandler(this.buttonShowAll_MouseEnter);
-            this.buttonShowAll.MouseLeave += new System.EventHandler(this.buttonShowAll_MouseLeave);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(224)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(713, 459);
+            this.ClientSize = new System.Drawing.Size(718, 629);
             this.Controls.Add(this.buttonShowAll);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonDelete);

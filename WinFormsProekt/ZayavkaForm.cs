@@ -41,5 +41,15 @@ namespace WinFormsProekt
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void buttonSave_MouseEnter(object sender, EventArgs e)
+        {
+            buttonSave.BackColor = Color.LightGreen;
+        }
+
+        private void buttonSave_MouseLeave(object sender, EventArgs e)
+        {
+            buttonSave.BackColor = Color.White;
+        }
     }
 }

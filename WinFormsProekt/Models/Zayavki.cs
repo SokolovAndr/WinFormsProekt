@@ -13,5 +13,7 @@ namespace WinFormsProekt.Models
         public string Postavchik { get; set; }
         public string Status { get; set; }
         public DateTime Date { get; set; }
+        public string Zapros { get; set; }
+        public string Otvet { get; set; }
     }
 }
