@@ -11,6 +11,7 @@ namespace WinFormsProekt
     {
         public static Users User { get; set; }
         public static Zayavki Zayavka { get; set; }
+        public static Kontragents Kontragent { get; set; }
         public static AppContext DB { get; set; }
         static SingleTon()
         {

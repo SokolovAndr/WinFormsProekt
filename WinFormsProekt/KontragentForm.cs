@@ -7,23 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsProekt.Models;
 
 namespace WinFormsProekt
 {
-    public partial class RegisterForm : Form
+    public partial class KontragentForm : Form
     {
-        public RegisterForm()
+        public KontragentForm()
         {
             InitializeComponent();
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (SingleTon.DB.Users.Where(u => u.Login == textBoxLoginRegistr.Text).Count() > 0)
+            if (SingleTon.DB.Kontragents.Where(u => u.Name == textBoxKontragent.Text).Count() > 0)
             {
-                //MessageBox.Show("Логин занят!");
-                MessageBox.Show($"Логин занят!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Название организации занято!");
+                MessageBox.Show($"Название организации занято!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+            else
+            {
+                //MessageBox.Show("Вы успешно создали контрагента!");
+                MessageBox.Show($"Вы успешно создали контрагента!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             DialogResult = DialogResult.OK;
             Close();

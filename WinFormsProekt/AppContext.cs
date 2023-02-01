@@ -13,6 +13,7 @@ namespace WinFormsProekt
     {
         public DbSet <Users> Users { get; set; }
         public DbSet <Zayavki> Zayavki { get; set; }
+        public DbSet <Kontragents> Kontragents { get; set; }
 
         public AppContext() => Database.Migrate();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

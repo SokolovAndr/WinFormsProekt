@@ -33,7 +33,6 @@
             this.buttonRedact = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonShowAll = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,7 +40,18 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonShowAll = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -49,9 +59,9 @@
             this.buttonClose.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonClose.Location = new System.Drawing.Point(653, 506);
+            this.buttonClose.Location = new System.Drawing.Point(754, 517);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(93, 43);
+            this.buttonClose.Size = new System.Drawing.Size(93, 30);
             this.buttonClose.TabIndex = 0;
             this.buttonClose.Text = "Закрыть";
             this.buttonClose.UseVisualStyleBackColor = false;
@@ -64,7 +74,7 @@
             this.buttonSozdat.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonSozdat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSozdat.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonSozdat.Location = new System.Drawing.Point(45, 34);
+            this.buttonSozdat.Location = new System.Drawing.Point(408, 34);
             this.buttonSozdat.Name = "buttonSozdat";
             this.buttonSozdat.Size = new System.Drawing.Size(86, 34);
             this.buttonSozdat.TabIndex = 2;
@@ -79,12 +89,13 @@
             this.buttonRedact.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonRedact.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonRedact.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonRedact.Location = new System.Drawing.Point(162, 34);
+            this.buttonRedact.Location = new System.Drawing.Point(714, 33);
             this.buttonRedact.Name = "buttonRedact";
             this.buttonRedact.Size = new System.Drawing.Size(133, 34);
             this.buttonRedact.TabIndex = 3;
             this.buttonRedact.Text = "Редактировать";
             this.buttonRedact.UseVisualStyleBackColor = false;
+            this.buttonRedact.Click += new System.EventHandler(this.buttonRedact_Click);
             this.buttonRedact.MouseEnter += new System.EventHandler(this.buttonRedact_MouseEnter);
             this.buttonRedact.MouseLeave += new System.EventHandler(this.buttonRedact_MouseLeave);
             // 
@@ -93,7 +104,7 @@
             this.buttonDelete.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonDelete.Location = new System.Drawing.Point(322, 34);
+            this.buttonDelete.Location = new System.Drawing.Point(43, 515);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(90, 34);
             this.buttonDelete.TabIndex = 4;
@@ -117,24 +128,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(43, 108);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(827, 375);
+            this.dataGridView1.Size = new System.Drawing.Size(804, 375);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // buttonShowAll
-            // 
-            this.buttonShowAll.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonShowAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonShowAll.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonShowAll.Location = new System.Drawing.Point(43, 506);
-            this.buttonShowAll.Name = "buttonShowAll";
-            this.buttonShowAll.Size = new System.Drawing.Size(111, 43);
-            this.buttonShowAll.TabIndex = 6;
-            this.buttonShowAll.Text = "Показать все";
-            this.buttonShowAll.UseVisualStyleBackColor = false;
-            this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);
-            this.buttonShowAll.MouseEnter += new System.EventHandler(this.buttonShowAll_MouseEnter);
-            this.buttonShowAll.MouseLeave += new System.EventHandler(this.buttonShowAll_MouseLeave);
             // 
             // Column1
             // 
@@ -173,12 +169,82 @@
             this.Column7.HeaderText = "Запрос";
             this.Column7.Name = "Column7";
             // 
+            // buttonShowAll
+            // 
+            this.buttonShowAll.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonShowAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShowAll.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonShowAll.Location = new System.Drawing.Point(43, 34);
+            this.buttonShowAll.Name = "buttonShowAll";
+            this.buttonShowAll.Size = new System.Drawing.Size(111, 34);
+            this.buttonShowAll.TabIndex = 6;
+            this.buttonShowAll.Text = "Показать все";
+            this.buttonShowAll.UseVisualStyleBackColor = false;
+            this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);
+            this.buttonShowAll.MouseEnter += new System.EventHandler(this.buttonShowAll_MouseEnter);
+            this.buttonShowAll.MouseLeave += new System.EventHandler(this.buttonShowAll_MouseLeave);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WinFormsProekt.Properties.Resources.Korzina;
+            this.pictureBox1.Location = new System.Drawing.Point(141, 517);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::WinFormsProekt.Properties.Resources.close;
+            this.pictureBox2.Location = new System.Drawing.Point(716, 517);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::WinFormsProekt.Properties.Resources.showall;
+            this.pictureBox3.Location = new System.Drawing.Point(168, 37);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 9;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::WinFormsProekt.Properties.Resources.create;
+            this.pictureBox4.Location = new System.Drawing.Point(499, 36);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 10;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::WinFormsProekt.Properties.Resources.pen2;
+            this.pictureBox5.Location = new System.Drawing.Point(678, 34);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 11;
+            this.pictureBox5.TabStop = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(224)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(1028, 629);
+            this.ClientSize = new System.Drawing.Size(913, 629);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonShowAll);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonDelete);
@@ -189,7 +255,13 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Программа учета заявок";
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,5 +281,10 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox5;
     }
 }

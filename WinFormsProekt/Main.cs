@@ -34,12 +34,6 @@ namespace WinFormsProekt
 
         }
 
-        private void buttonClose_Click(object sender, EventArgs e)
-        {
-            //Timer.Stop();
-            Close();
-        }
-
         private void buttonSozdat_Click(object sender, EventArgs e)
         {
             ZayavkaForm zayavka = new ZayavkaForm();
@@ -60,42 +54,75 @@ namespace WinFormsProekt
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            string connectString = @"Data Source=WinFormsProekt.db";
-            
-            using (SqliteConnection conn = new SqliteConnection(connectString))
+            DialogResult dialogResult = MessageBox.Show("Вы уверены что хотите удалить заявку?", "Удаление заявки", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
             {
-                conn.Open();
+                string connectString = @"Data Source=WinFormsProekt.db";
 
-                int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
-                string sql = $"DELETE FROM Zayavki WHERE id = {id}";
-                SqliteCommand cmd = new SqliteCommand(sql, conn);
-                cmd.ExecuteNonQuery();
+                using (SqliteConnection conn = new SqliteConnection(connectString))
+                {
+                    conn.Open();
 
-                MessageBox.Show($"Заявка № {id} удалена");
+                    int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+                    string sql = $"DELETE FROM Zayavki WHERE id = {id}";
+                    SqliteCommand cmd = new SqliteCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show($"Заявка № {id} удалена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
+            else if (dialogResult == DialogResult.No)
+            {
+                Close();
+            } 
         }
 
-        private void buttonShowAll_Click(object sender, EventArgs e)
+        private void buttonRedact_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-            LoadData();
+            string connectString = "Data Source=WinFormsProekt.db;";                    //1.создание строки подключения к БД
+            using (SqliteConnection myConnection = new SqliteConnection(connectString)) //2.создание экземпляра класса для подключения к БД + using
+            {
+                myConnection.Open();                                                    //3.Откроем подключение
+                int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());    //4.считали id из dataGridView по выбранной строке
+                string query = "SELECT * FROM Zayavki WHERE id = {id}";                 //5.запрос в БД по id Заявки
+                SqliteCommand command = new SqliteCommand(query, myConnection);         //6.создаем экземпляр класса SqlCommand и
+                                                                                        //7.передаем ему в конструктор запрос и объект который устанавливает запрос с БД
+                SqliteDataReader reader = command.ExecuteReader();                      //8.создаем экземпляр клааса sqlreqder для чтения данных из БД
+
+                List<string[]> data = new List<string[]>();                             //9.будем читать данные из БД. Каждая строка - строковый массив
+                ZayavkaForm zayavka = new ZayavkaForm();                                //10.Инициализация формы
+                zayavka.ShowDialog();                                                   //11.Вывод формы на экрна
+                while (reader.Read())                                                   //12.Чтение и заполнение элементов на форме
+                {
+                    data.Add(new string[6]);
+
+                    //data[data.Count - 1][0] = zayavka.id;
+                    data[data.Count - 1][0] = zayavka.textBox1.Text;
+                    data[data.Count - 1][1] = zayavka.textBox2.Text;
+                    data[data.Count - 1][2] = zayavka.comboBox1.Text;
+                    data[data.Count - 1][3] = zayavka.dateTimePicker1.Text; 
+                    data[data.Count - 1][4] = zayavka.textBoxZapros.Text;
+                    data[data.Count - 1][5] = zayavka.textBoxOtvet.Text;
+
+                }
+                reader.Close();
+                myConnection.Close();
+                
+            }
+            
+
         }
 
         private void LoadData()
         {
             //создание строки подключения к БД
 
-            
-            //string connectString = "Data Source=MSSqlLocalDB; Integrated Security=True";
-
             string connectString = "Data Source=WinFormsProekt.db;";
-
-            //Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;
 
             //создание экземпляра класса для подключения к БД
 
             SqliteConnection myConnection = new SqliteConnection(connectString);
-        
+
             //Откроем подключение
 
             myConnection.Open();
@@ -105,7 +132,7 @@ namespace WinFormsProekt
             //создаем экземпляр класса SqlCommand и передаем ему в конструктор запрос и объект который устанавливает запрос с БД
 
             SqliteCommand command = new SqliteCommand(query, myConnection);
-        
+
             //создаем экземпляр клааса sqlreqder для чтения данных из БД
 
             SqliteDataReader reader = command.ExecuteReader(); // метод ExecuteReader объекта command
@@ -113,7 +140,7 @@ namespace WinFormsProekt
             //создаем список List элементами которого будет строковый массив
 
             List<string[]> data = new List<string[]>(); //будем читать данные из БД. Каждая строка - строковый массив 
-        
+
             while (reader.Read())
             {
                 data.Add(new string[7]);
@@ -137,7 +164,22 @@ namespace WinFormsProekt
 
             PrintTable();
         }
+        private void buttonShowAll_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            LoadData();
+        }
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            //Timer.Stop();
+            Close();
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //ZayavkaForm zayavka = new ZayavkaForm();
+            //zayavka.Show();
 
+        }
         private void PrintTable()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -159,13 +201,6 @@ namespace WinFormsProekt
                     row.DefaultCellStyle.BackColor = Color.Gold;
                 }
             }    
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //ZayavkaForm zayavka = new ZayavkaForm();
-            //zayavka.Show();
-
         }
 
         //Цветовая индикация кнопок начало
@@ -210,7 +245,11 @@ namespace WinFormsProekt
             buttonShowAll.BackColor = Color.White;
         }
 
-        //Цветовая индикация кнопок конец
+        private void Main_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        //Цветовая индикация кнопок конец
     }
 }
