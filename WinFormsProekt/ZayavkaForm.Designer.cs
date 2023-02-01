@@ -38,9 +38,9 @@
             this.labelData = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxZapros = new System.Windows.Forms.TextBox();
-            this.textBoxOtvet = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelOtvet = new System.Windows.Forms.Label();
+            this.textBoxOtvet = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // labelClient
@@ -139,15 +139,6 @@
             this.textBoxZapros.Size = new System.Drawing.Size(328, 231);
             this.textBoxZapros.TabIndex = 9;
             // 
-            // textBoxOtvet
-            // 
-            this.textBoxOtvet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxOtvet.Location = new System.Drawing.Point(479, 207);
-            this.textBoxOtvet.Multiline = true;
-            this.textBoxOtvet.Name = "textBoxOtvet";
-            this.textBoxOtvet.Size = new System.Drawing.Size(328, 231);
-            this.textBoxOtvet.TabIndex = 10;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -158,24 +149,33 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Запрос:";
             // 
-            // label2
+            // labelOtvet
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(479, 158);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 21);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Ответ:";
+            this.labelOtvet.AutoSize = true;
+            this.labelOtvet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelOtvet.Location = new System.Drawing.Point(479, 158);
+            this.labelOtvet.Name = "labelOtvet";
+            this.labelOtvet.Size = new System.Drawing.Size(64, 21);
+            this.labelOtvet.TabIndex = 13;
+            this.labelOtvet.Text = "Запрос:";
+            // 
+            // textBoxOtvet
+            // 
+            this.textBoxOtvet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxOtvet.Location = new System.Drawing.Point(479, 207);
+            this.textBoxOtvet.Multiline = true;
+            this.textBoxOtvet.Name = "textBoxOtvet";
+            this.textBoxOtvet.Size = new System.Drawing.Size(328, 231);
+            this.textBoxOtvet.TabIndex = 12;
             // 
             // ZayavkaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 581);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelOtvet);
             this.Controls.Add(this.textBoxOtvet);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxZapros);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.labelData);
@@ -207,8 +207,8 @@
         public Label labelData;
         private Button buttonSave;
         public TextBox textBoxZapros;
-        public TextBox textBoxOtvet;
         private Label label1;
-        private Label label2;
+        private Label labelOtvet;
+        public TextBox textBoxOtvet;
     }
 }

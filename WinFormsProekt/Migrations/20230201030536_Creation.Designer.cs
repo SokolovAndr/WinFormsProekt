@@ -11,8 +11,8 @@ using WinFormsProekt;
 namespace WinFormsProekt.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20230128105028_initialCreate2")]
-    partial class initialCreate2
+    [Migration("20230201030536_Creation")]
+    partial class Creation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,11 +52,19 @@ namespace WinFormsProekt.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Otvet")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Postavchik")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Zapros")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

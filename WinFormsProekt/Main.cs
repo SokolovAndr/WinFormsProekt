@@ -60,6 +60,111 @@ namespace WinFormsProekt
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            string connectString = @"Data Source=WinFormsProekt.db";
+            
+            using (SqliteConnection conn = new SqliteConnection(connectString))
+            {
+                conn.Open();
+
+                int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+                string sql = $"DELETE FROM Zayavki WHERE id = {id}";
+                SqliteCommand cmd = new SqliteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show($"Заявка № {id} удалена");
+            }
+        }
+
+        private void buttonShowAll_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            //создание строки подключения к БД
+
+            
+            //string connectString = "Data Source=MSSqlLocalDB; Integrated Security=True";
+
+            string connectString = "Data Source=WinFormsProekt.db;";
+
+            //Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;
+
+            //создание экземпляра класса для подключения к БД
+
+            SqliteConnection myConnection = new SqliteConnection(connectString);
+        
+            //Откроем подключение
+
+            myConnection.Open();
+
+            string query = "SELECT * FROM Zayavki ORDER BY Id";
+
+            //создаем экземпляр класса SqlCommand и передаем ему в конструктор запрос и объект который устанавливает запрос с БД
+
+            SqliteCommand command = new SqliteCommand(query, myConnection);
+        
+            //создаем экземпляр клааса sqlreqder для чтения данных из БД
+
+            SqliteDataReader reader = command.ExecuteReader(); // метод ExecuteReader объекта command
+
+            //создаем список List элементами которого будет строковый массив
+
+            List<string[]> data = new List<string[]>(); //будем читать данные из БД. Каждая строка - строковый массив 
+        
+            while (reader.Read())
+            {
+                data.Add(new string[7]);
+
+                data[data.Count - 1][0] = reader[0].ToString();
+                data[data.Count - 1][1] = reader[1].ToString();
+                data[data.Count - 1][2] = reader[2].ToString();
+                data[data.Count - 1][3] = reader[3].ToString();
+                data[data.Count - 1][4] = reader[4].ToString().Remove(19); //здесь удаляем лишниме символы в строке с датой
+                data[data.Count - 1][5] = reader[5].ToString();
+                data[data.Count - 1][6] = reader[6].ToString();
+
+            }
+            reader.Close();
+            myConnection.Close();
+
+            foreach (string[] s in data)
+            {
+                dataGridView1.Rows.Add(s);
+            }
+
+            PrintTable();
+        }
+
+        private void PrintTable()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (Convert.ToString(row.Cells[3].Value) == "Обработано")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LimeGreen;
+                }
+                if (Convert.ToString(row.Cells[3].Value) == "Не обработано")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightCoral;
+                }
+                if (Convert.ToString(row.Cells[3].Value) == "В обработке")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+                if (Convert.ToString(row.Cells[3].Value) == "Требуется уточнение")
+                {
+                    row.DefaultCellStyle.BackColor = Color.Gold;
+                }
+            }    
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //ZayavkaForm zayavka = new ZayavkaForm();
+            //zayavka.Show();
 
         }
 
@@ -106,91 +211,6 @@ namespace WinFormsProekt
         }
 
         //Цветовая индикация кнопок конец
-
-        private void buttonShowAll_Click(object sender, EventArgs e)
-        {
-            dataGridView1.Rows.Clear();
-            LoadData();
-        }
-
-        private void LoadData()
-        {
-            //создание строки подключения к БД
-
-            
-            //string connectString = "Data Source=MSSqlLocalDB; Integrated Security=True";
-
-            string connectString = "Data Source=WinFormsProekt.db;";
-
-            //Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;
-
-            //создание экземпляра класса для подключения к БД
-
-            SqliteConnection myConnection = new SqliteConnection(connectString);
-        
-            //Откроем подключение
-
-            myConnection.Open();
-
-            string query = "SELECT * FROM Zayavki ORDER BY Id";
-
-            //создаем экземпляр класса SqlCommand и передаем ему в конструктор запрос и объект который устанавливает запрос с БД
-
-            SqliteCommand command = new SqliteCommand(query, myConnection);
-        
-            //создаем экземпляр клааса sqlreqder для чтения данных из БД
-
-            SqliteDataReader reader = command.ExecuteReader(); // метод ExecuteReader объекта command
-
-            //создаем список List элементами которого будет строковый массив
-
-            List<string[]> data = new List<string[]>(); //будем читать данные из БД. Каждая строка - строковый массив 
-        
-            while (reader.Read())
-            {
-                data.Add(new string[5]);
-
-                data[data.Count - 1][0] = reader[0].ToString();
-                data[data.Count - 1][1] = reader[1].ToString();
-                data[data.Count - 1][2] = reader[2].ToString();
-                data[data.Count - 1][3] = reader[3].ToString();
-                data[data.Count - 1][4] = reader[4].ToString().Remove(19); //здесь удаляем лишниме символы в строке с датой
-
-
-            }
-            reader.Close();
-            myConnection.Close();
-
-            foreach (string[] s in data)
-            {
-                dataGridView1.Rows.Add(s);
-            }
-
-            PrintTable();
-        }
-
-        private void PrintTable()
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (Convert.ToString(row.Cells[3].Value) == "Обработано")
-                {
-                    row.DefaultCellStyle.BackColor = Color.LimeGreen;
-                }
-                if (Convert.ToString(row.Cells[3].Value) == "Не обработано")
-                {
-                    row.DefaultCellStyle.BackColor = Color.LightCoral;
-                }
-                if (Convert.ToString(row.Cells[3].Value) == "В обработке")
-                {
-                    row.DefaultCellStyle.BackColor = Color.LightGreen;
-                }
-                if (Convert.ToString(row.Cells[3].Value) == "Требуется уточнение")
-                {
-                    row.DefaultCellStyle.BackColor = Color.Gold;
-                }
-            }    
-        }
 
     }
 }
