@@ -11,6 +11,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using WinFormsProekt.Models;
 using Microsoft.Data.Sqlite;
 using Timer = System.Windows.Forms.Timer;
+using System.Diagnostics;
 
 namespace WinFormsProekt
 {
@@ -79,40 +80,40 @@ namespace WinFormsProekt
 
         private void buttonRedact_Click(object sender, EventArgs e)
         {
-            string connectString = "Data Source=WinFormsProekt.db;";                    //1.создание строки подключения к БД
-            using (SqliteConnection myConnection = new SqliteConnection(connectString)) //2.создание экземпляра класса для подключения к БД + using
             {
-                myConnection.Open();                                                    //3.Откроем подключение
-                int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());    //4.считали id из dataGridView по выбранной строке
-                string query = "SELECT * FROM Zayavki WHERE id = {id}";                 //5.запрос в БД по id Заявки
-                SqliteCommand command = new SqliteCommand(query, myConnection);         //6.создаем экземпляр класса SqlCommand и
-                                                                                        //7.передаем ему в конструктор запрос и объект который устанавливает запрос с БД
-                SqliteDataReader reader = command.ExecuteReader();                      //8.создаем экземпляр клааса sqlreqder для чтения данных из БД
-
-                List<string[]> data = new List<string[]>();                             //9.будем читать данные из БД. Каждая строка - строковый массив
-                ZayavkaForm zayavka = new ZayavkaForm();                                //10.Инициализация формы
-                zayavka.ShowDialog();                                                   //11.Вывод формы на экрна
-                while (reader.Read())                                                   //12.Чтение и заполнение элементов на форме
+                string connectString = "Data Source=WinFormsProekt.db;";                    //1.создание строки подключения к БД
+                using (SqliteConnection myConnection = new SqliteConnection(connectString)) //2.создание экземпляра класса для подключения к БД + using
                 {
-                    data.Add(new string[6]);
+                    myConnection.Open();                                                    //3.Откроем подключение
+                    int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());    //4.считали id из dataGridView по выбранной строке
+                    string query = $"SELECT * FROM Zayavki WHERE Id = {id}";                 //5.запрос в БД по id Заявки
+                    SqliteCommand command = new SqliteCommand(query, myConnection);         //6.создаем экземпляр класса SqlCommand и
+                                                                                            //7.передаем ему в конструктор запрос и объект который устанавливает запрос с БД
+                    SqliteDataReader reader = command.ExecuteReader();                      //8.создаем экземпляр клааса sqlreqder для чтения данных из БД
 
-                    //data[data.Count - 1][0] = zayavka.id;
-                    data[data.Count - 1][0] = zayavka.textBox1.Text;
-                    data[data.Count - 1][1] = zayavka.textBox2.Text;
-                    data[data.Count - 1][2] = zayavka.comboBox1.Text;
-                    data[data.Count - 1][3] = zayavka.dateTimePicker1.Text; 
-                    data[data.Count - 1][4] = zayavka.textBoxZapros.Text;
-                    data[data.Count - 1][5] = zayavka.textBoxOtvet.Text;
+                    List<string[]> data = new List<string[]>();                             //9.будем читать данные из БД. Каждая строка - строковый массив
+                    ZayavkaForm zayavka = new ZayavkaForm();                                //10.Инициализация формы
+                    zayavka.ShowDialog();                                                   //11.Вывод формы на экрна
+                    while (reader.Read())                                                   //12.Чтение и заполнение элементов на форме
+                    {
+                        data.Add(new string[6]);
+
+                        //data[data.Count - 1][0] = zayavka.id;
+                        data[data.Count - 1][0] = zayavka.textBox1.Text;
+                        data[data.Count - 1][1] = zayavka.textBox2.Text;
+                        data[data.Count - 1][2] = zayavka.comboBox1.Text;
+                        data[data.Count - 1][3] = zayavka.dateTimePicker1.Text;
+                        data[data.Count - 1][4] = zayavka.textBoxZapros.Text;
+                        data[data.Count - 1][5] = zayavka.textBoxOtvet.Text;
+
+                    }
+                    reader.Close();
+                    myConnection.Close();
 
                 }
-                reader.Close();
-                myConnection.Close();
-                
+
             }
-            
-
         }
-
         private void LoadData()
         {
             //создание строки подключения к БД
@@ -168,6 +169,7 @@ namespace WinFormsProekt
         {
             dataGridView1.Rows.Clear();
             LoadData();
+            checkBox1.Checked = false;
         }
         private void buttonClose_Click(object sender, EventArgs e)
         {
@@ -249,6 +251,92 @@ namespace WinFormsProekt
         {
 
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                dataGridView1.Rows.Clear();
+                LoadDataForCheckBox();
+            }
+            else
+            {
+                dataGridView1.Rows.Clear();
+                LoadData();
+            }
+        }
+
+        private void LoadDataForCheckBox()
+        {
+            //dataGridView1.Rows.Clear();
+            //создание строки подключения к БД
+
+            string connectString = "Data Source=WinFormsProekt.db;";
+
+            //создание экземпляра класса для подключения к БД
+
+            SqliteConnection myConnection = new SqliteConnection(connectString);
+
+            //Откроем подключение
+
+            myConnection.Open();
+           
+            string query = "SELECT * FROM Zayavki WHERE Status != 'Обработано'";
+
+            //создаем экземпляр класса SqlCommand и передаем ему в конструктор запрос и объект который устанавливает запрос с БД
+
+            SqliteCommand command = new SqliteCommand(query, myConnection);
+
+            //создаем экземпляр клааса sqlreqder для чтения данных из БД
+
+            SqliteDataReader reader = command.ExecuteReader(); // метод ExecuteReader объекта command
+
+            //создаем список List элементами которого будет строковый массив
+
+            List<string[]> data = new List<string[]>(); //будем читать данные из БД. Каждая строка - строковый массив 
+
+            while (reader.Read())
+            {
+                data.Add(new string[7]);
+
+                data[data.Count - 1][0] = reader[0].ToString();
+                data[data.Count - 1][1] = reader[1].ToString();
+                data[data.Count - 1][2] = reader[2].ToString();
+                data[data.Count - 1][3] = reader[3].ToString();
+                data[data.Count - 1][4] = reader[4].ToString().Remove(19); //здесь удаляем лишниме символы в строке с датой
+                data[data.Count - 1][5] = reader[5].ToString();
+                data[data.Count - 1][6] = reader[6].ToString();
+
+            }
+            reader.Close();
+            myConnection.Close();
+
+            foreach (string[] s in data)
+            {
+                dataGridView1.Rows.Add(s);
+            }
+
+            PrintTable();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                VisitMyGitHub();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to open link that was clicked.");
+            }
+        }
+
+        private void VisitMyGitHub()
+        {
+            linkLabel1.LinkVisited = true;
+            System.Diagnostics.Process.Start("IExplore.exe", "http://github.com/SokolovAndr");
+        }
+
 
         //Цветовая индикация кнопок конец
     }

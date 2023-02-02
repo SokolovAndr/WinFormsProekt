@@ -46,6 +46,8 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -59,7 +61,7 @@
             this.buttonClose.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonClose.Location = new System.Drawing.Point(754, 517);
+            this.buttonClose.Location = new System.Drawing.Point(754, 539);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(93, 30);
             this.buttonClose.TabIndex = 0;
@@ -104,7 +106,7 @@
             this.buttonDelete.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonDelete.Location = new System.Drawing.Point(43, 515);
+            this.buttonDelete.Location = new System.Drawing.Point(43, 537);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(90, 34);
             this.buttonDelete.TabIndex = 4;
@@ -125,7 +127,7 @@
             this.Column5,
             this.Column6,
             this.Column7});
-            this.dataGridView1.Location = new System.Drawing.Point(43, 108);
+            this.dataGridView1.Location = new System.Drawing.Point(43, 130);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(804, 375);
@@ -187,7 +189,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WinFormsProekt.Properties.Resources.Korzina;
-            this.pictureBox1.Location = new System.Drawing.Point(141, 517);
+            this.pictureBox1.Location = new System.Drawing.Point(141, 539);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -197,7 +199,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::WinFormsProekt.Properties.Resources.close;
-            this.pictureBox2.Location = new System.Drawing.Point(716, 517);
+            this.pictureBox2.Location = new System.Drawing.Point(716, 539);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 30);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -234,12 +236,37 @@
             this.pictureBox5.TabIndex = 11;
             this.pictureBox5.TabStop = false;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.checkBox1.Location = new System.Drawing.Point(43, 84);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(201, 25);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "- Скрыть обработанные";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(400, 588);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(94, 15);
+            this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "НЕ НАЖИМАТЬ";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(224)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(913, 629);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
@@ -263,6 +290,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -286,5 +314,7 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
+        private CheckBox checkBox1;
+        private LinkLabel linkLabel1;
     }
 }

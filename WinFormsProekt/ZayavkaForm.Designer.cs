@@ -337,10 +337,10 @@
         public TextBox textBoxOtvet;
         private Button button1;
         private Button button2;
-        private ComboBox comboBoxKontr;
+        public ComboBox comboBoxKontr;
         private Label label2;
         private Label label3;
-        private ComboBox comboBoxKontr2;
+        public ComboBox comboBoxKontr2;
         private PictureBox pictureBox4;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
