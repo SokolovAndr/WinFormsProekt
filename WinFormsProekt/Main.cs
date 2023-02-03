@@ -10,31 +10,17 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using WinFormsProekt.Models;
 using Microsoft.Data.Sqlite;
-using Timer = System.Windows.Forms.Timer;
 using System.Diagnostics;
 
 namespace WinFormsProekt
 {
     public partial class Main : Form
     {
-
-        Timer Timer;
         public Main()
         {
             InitializeComponent();
             LoadData();
-
-            //Удалить комментирование после отладки кнопок Удалить и редактировать
-            //Timer = new Timer();
-            //Timer.Interval = 1000;
-            //Timer.Tick += (s, e) => {
-            //    dataGridView1.Rows.Clear();
-            //    LoadData();
-            //};
-            //Timer.Start();
-
         }
-
         private void buttonSozdat_Click(object sender, EventArgs e)
         {
             ZayavkaForm zayavka = new ZayavkaForm();
@@ -77,7 +63,6 @@ namespace WinFormsProekt
                 return;
             } 
         }
-
         private void buttonRedact_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Вы уверены что хотите изменить заявку?", "Изменение заявки", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -110,7 +95,7 @@ namespace WinFormsProekt
 
                     }
                     reader.Close();
-                    //myConnection.Close();
+                    myConnection.Close();
 
                     foreach (string[] s in data)
                     {
@@ -127,31 +112,36 @@ namespace WinFormsProekt
 
                     zayavka.ShowDialog();
 
+                    using (SqliteConnection myConnection2 = new SqliteConnection(connectString))
+                    {
+                        try
+                        {
+                            myConnection2.Open();
 
-                    //string sql = $"UPDATE Zayavki SET Status = comboBox1.Text WHERE id = {id}"; 
-                    //SqliteCommand cmd = new SqliteCommand(sql, myConnection);
-                    //cmd.ExecuteNonQuery();
-                    //myConnection.Close();
-                    //MessageBox.Show($"Заявка № {id} изменена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            string sql = $"UPDATE Zayavki SET " +
+                                $"Client ={zayavka.textBox1.Text}, " +
+                                $"Postavchik = {zayavka.textBox2.Text}," +
+                                $"Status = {zayavka.comboBox1.Text}, " +
+                                $"Zapros = {zayavka.textBoxZapros.Text}," +
+                                $"Otvet = {zayavka.textBoxOtvet.Text} WHERE id = {id}";
 
+                            SqliteCommand cmd = new SqliteCommand(sql, myConnection2);
+                            cmd.ExecuteNonQuery();
 
-
-                    //myConnection.Close();
+                            MessageBox.Show($"Заявка № {id} изменена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            myConnection2.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
                 }
-                //using (SqliteConnection myConnection = new SqliteConnection(connectString)) //2.создание экземпляра класса для подключения к БД + using
-                //{
-                //    myConnection.Open();                                                    //3.Откроем подключение
-                //    int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());    //4.считали id из dataGridView по выбранной строке
-                //    string query = $"UPDATE * FROM Zayavki WHERE Id = {id}";                 //5.запрос в БД по id Заявки
-                //    SqliteCommand command = new SqliteCommand(query, myConnection);
-
-                //}
             }
             else if (dialogResult == DialogResult.No)
             {
                 return;
             }
-
         }
         private void LoadData()
         {
@@ -243,54 +233,6 @@ namespace WinFormsProekt
                 }
             }    
         }
-
-        //Цветовая индикация кнопок начало
-        private void buttonSozdat_MouseEnter(object sender, EventArgs e)
-        {
-            buttonSozdat.BackColor = Color.LightGreen;
-        }
-        private void buttonSozdat_MouseLeave(object sender, EventArgs e)
-        {
-            buttonSozdat.BackColor = Color.White;
-        }
-        private void buttonDelete_MouseEnter(object sender, EventArgs e)
-        {
-            buttonDelete.BackColor = Color.LightGreen;
-        }
-        private void buttonDelete_MouseLeave(object sender, EventArgs e)
-        {
-            buttonDelete.BackColor = Color.White;
-        }
-        private void buttonClose_MouseEnter(object sender, EventArgs e)
-        {
-            buttonClose.BackColor = Color.LightGreen;
-        }
-        private void buttonClose_MouseLeave(object sender, EventArgs e)
-        {
-            buttonClose.BackColor = Color.White;
-        }
-        private void buttonRedact_MouseEnter(object sender, EventArgs e)
-        {
-            buttonRedact.BackColor = Color.LightGreen;
-        }
-        private void buttonRedact_MouseLeave(object sender, EventArgs e)
-        {
-            buttonRedact.BackColor = Color.White;
-        }
-        private void buttonShowAll_MouseEnter(object sender, EventArgs e)
-        {
-            buttonShowAll.BackColor = Color.LightGreen;
-        }
-        private void buttonShowAll_MouseLeave(object sender, EventArgs e)
-        {
-            buttonShowAll.BackColor = Color.White;
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
@@ -304,7 +246,6 @@ namespace WinFormsProekt
                 LoadData();
             }
         }
-
         private void LoadDataForCheckBox()
         {
             //dataGridView1.Rows.Clear();
@@ -357,7 +298,47 @@ namespace WinFormsProekt
 
             PrintTable();
         }
-
-                //Цветовая индикация кнопок конец
+        //Цветовая индикация кнопок начало
+        private void buttonSozdat_MouseEnter(object sender, EventArgs e)
+        {
+            buttonSozdat.BackColor = Color.LightGreen;
+        }
+        private void buttonSozdat_MouseLeave(object sender, EventArgs e)
+        {
+            buttonSozdat.BackColor = Color.White;
+        }
+        private void buttonDelete_MouseEnter(object sender, EventArgs e)
+        {
+            buttonDelete.BackColor = Color.LightGreen;
+        }
+        private void buttonDelete_MouseLeave(object sender, EventArgs e)
+        {
+            buttonDelete.BackColor = Color.White;
+        }
+        private void buttonClose_MouseEnter(object sender, EventArgs e)
+        {
+            buttonClose.BackColor = Color.LightGreen;
+        }
+        private void buttonClose_MouseLeave(object sender, EventArgs e)
+        {
+            buttonClose.BackColor = Color.White;
+        }
+        private void buttonRedact_MouseEnter(object sender, EventArgs e)
+        {
+            buttonRedact.BackColor = Color.LightGreen;
+        }
+        private void buttonRedact_MouseLeave(object sender, EventArgs e)
+        {
+            buttonRedact.BackColor = Color.White;
+        }
+        private void buttonShowAll_MouseEnter(object sender, EventArgs e)
+        {
+            buttonShowAll.BackColor = Color.LightGreen;
+        }
+        private void buttonShowAll_MouseLeave(object sender, EventArgs e)
+        {
+            buttonShowAll.BackColor = Color.White;
+        }
+        //Цветовая индикация кнопок конец
     }
 }

@@ -60,7 +60,7 @@ namespace WinFormsProekt
             var user = SingleTon.DB.Users.Where(u => u.Login == textBoxLogin.Text && u.Password == textBoxParol.Text).FirstOrDefault();
             if (user == null)
             {
-                MessageBox.Show("Пользователь не найден!");
+                MessageBox.Show("Пользователь не найден!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             SingleTon.User = user;

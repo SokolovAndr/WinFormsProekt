@@ -21,11 +21,11 @@ namespace WinFormsProekt
         {
             if (SingleTon.DB.Users.Where(u => u.Login == textBoxLoginRegistr.Text).Count() > 0)
             {
-                //MessageBox.Show("Логин занят!");
                 MessageBox.Show($"Логин занят!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             DialogResult = DialogResult.OK;
+            MessageBox.Show("Вы успешно зарегистрировались!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 

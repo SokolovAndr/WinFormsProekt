@@ -114,7 +114,8 @@ namespace WinFormsProekt
 
         private void buttonSaceChanges_Click(object sender, EventArgs e)
         {
-
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

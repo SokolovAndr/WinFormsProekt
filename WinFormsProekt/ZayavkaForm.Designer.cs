@@ -52,7 +52,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.buttonSaceChanges = new System.Windows.Forms.Button();
+            this.buttonSaveChanges = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -302,16 +302,16 @@
             this.label5.Size = new System.Drawing.Size(0, 21);
             this.label5.TabIndex = 24;
             // 
-            // buttonSaceChanges
+            // buttonSaveChanges
             // 
-            this.buttonSaceChanges.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonSaceChanges.Location = new System.Drawing.Point(376, 629);
-            this.buttonSaceChanges.Name = "buttonSaceChanges";
-            this.buttonSaceChanges.Size = new System.Drawing.Size(185, 40);
-            this.buttonSaceChanges.TabIndex = 25;
-            this.buttonSaceChanges.Text = "Сохранить изменения";
-            this.buttonSaceChanges.UseVisualStyleBackColor = true;
-            this.buttonSaceChanges.Click += new System.EventHandler(this.buttonSaceChanges_Click);
+            this.buttonSaveChanges.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonSaveChanges.Location = new System.Drawing.Point(376, 629);
+            this.buttonSaveChanges.Name = "buttonSaveChanges";
+            this.buttonSaveChanges.Size = new System.Drawing.Size(185, 40);
+            this.buttonSaveChanges.TabIndex = 25;
+            this.buttonSaveChanges.Text = "Сохранить изменения";
+            this.buttonSaveChanges.UseVisualStyleBackColor = true;
+            this.buttonSaveChanges.Click += new System.EventHandler(this.buttonSaceChanges_Click);
             // 
             // ZayavkaForm
             // 
@@ -319,7 +319,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(224)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(918, 699);
-            this.Controls.Add(this.buttonSaceChanges);
+            this.Controls.Add(this.buttonSaveChanges);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox2);
@@ -382,6 +382,6 @@
         private PictureBox pictureBox2;
         public Label label4;
         public Label label5;
-        private Button buttonSaceChanges;
+        private Button buttonSaveChanges;
     }
 }
