@@ -50,6 +50,9 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonSaceChanges = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -59,7 +62,7 @@
             // 
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelClient.Location = new System.Drawing.Point(95, 80);
+            this.labelClient.Location = new System.Drawing.Point(98, 118);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(63, 21);
             this.labelClient.TabIndex = 0;
@@ -69,7 +72,7 @@
             // 
             this.labelPostavchik.AutoSize = true;
             this.labelPostavchik.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPostavchik.Location = new System.Drawing.Point(547, 80);
+            this.labelPostavchik.Location = new System.Drawing.Point(550, 118);
             this.labelPostavchik.Name = "labelPostavchik";
             this.labelPostavchik.Size = new System.Drawing.Size(93, 21);
             this.labelPostavchik.TabIndex = 1;
@@ -78,7 +81,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePicker1.Location = new System.Drawing.Point(680, 214);
+            this.dateTimePicker1.Location = new System.Drawing.Point(683, 252);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(195, 29);
             this.dateTimePicker1.TabIndex = 2;
@@ -87,7 +90,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelStatus.Location = new System.Drawing.Point(70, 214);
+            this.labelStatus.Location = new System.Drawing.Point(73, 252);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(60, 21);
             this.labelStatus.TabIndex = 3;
@@ -96,7 +99,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(203, 77);
+            this.textBox1.Location = new System.Drawing.Point(206, 115);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(195, 29);
@@ -105,7 +108,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(680, 77);
+            this.textBox2.Location = new System.Drawing.Point(683, 115);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(195, 29);
@@ -115,7 +118,7 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(203, 214);
+            this.comboBox1.Location = new System.Drawing.Point(206, 252);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(195, 29);
             this.comboBox1.TabIndex = 6;
@@ -124,7 +127,7 @@
             // 
             this.labelData.AutoSize = true;
             this.labelData.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelData.Location = new System.Drawing.Point(547, 222);
+            this.labelData.Location = new System.Drawing.Point(550, 260);
             this.labelData.Name = "labelData";
             this.labelData.Size = new System.Drawing.Size(117, 21);
             this.labelData.TabIndex = 7;
@@ -134,11 +137,11 @@
             // 
             this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonSave.Location = new System.Drawing.Point(760, 591);
+            this.buttonSave.Location = new System.Drawing.Point(736, 629);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(115, 40);
+            this.buttonSave.Size = new System.Drawing.Size(142, 40);
             this.buttonSave.TabIndex = 8;
-            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.Text = "Добавить заявку";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             this.buttonSave.MouseEnter += new System.EventHandler(this.buttonSave_MouseEnter);
@@ -147,7 +150,7 @@
             // textBoxZapros
             // 
             this.textBoxZapros.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxZapros.Location = new System.Drawing.Point(70, 341);
+            this.textBoxZapros.Location = new System.Drawing.Point(73, 379);
             this.textBoxZapros.Multiline = true;
             this.textBoxZapros.Name = "textBoxZapros";
             this.textBoxZapros.Size = new System.Drawing.Size(328, 231);
@@ -157,7 +160,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(70, 292);
+            this.label1.Location = new System.Drawing.Point(73, 330);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 21);
             this.label1.TabIndex = 11;
@@ -167,7 +170,7 @@
             // 
             this.labelOtvet.AutoSize = true;
             this.labelOtvet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelOtvet.Location = new System.Drawing.Point(547, 292);
+            this.labelOtvet.Location = new System.Drawing.Point(550, 330);
             this.labelOtvet.Name = "labelOtvet";
             this.labelOtvet.Size = new System.Drawing.Size(55, 21);
             this.labelOtvet.TabIndex = 13;
@@ -176,7 +179,7 @@
             // textBoxOtvet
             // 
             this.textBoxOtvet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxOtvet.Location = new System.Drawing.Point(547, 341);
+            this.textBoxOtvet.Location = new System.Drawing.Point(550, 379);
             this.textBoxOtvet.Multiline = true;
             this.textBoxOtvet.Name = "textBoxOtvet";
             this.textBoxOtvet.Size = new System.Drawing.Size(328, 231);
@@ -186,7 +189,7 @@
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(203, 128);
+            this.button1.Location = new System.Drawing.Point(206, 166);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 40);
             this.button1.TabIndex = 14;
@@ -200,7 +203,7 @@
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(680, 128);
+            this.button2.Location = new System.Drawing.Point(683, 166);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 40);
             this.button2.TabIndex = 15;
@@ -214,7 +217,7 @@
             // 
             this.comboBoxKontr.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxKontr.FormattingEnabled = true;
-            this.comboBoxKontr.Location = new System.Drawing.Point(203, 27);
+            this.comboBoxKontr.Location = new System.Drawing.Point(206, 65);
             this.comboBoxKontr.Name = "comboBoxKontr";
             this.comboBoxKontr.Size = new System.Drawing.Size(195, 29);
             this.comboBoxKontr.TabIndex = 16;
@@ -224,7 +227,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(53, 27);
+            this.label2.Location = new System.Drawing.Point(56, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 21);
             this.label2.TabIndex = 17;
@@ -234,7 +237,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(501, 30);
+            this.label3.Location = new System.Drawing.Point(504, 68);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(173, 21);
             this.label3.TabIndex = 19;
@@ -244,7 +247,7 @@
             // 
             this.comboBoxKontr2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxKontr2.FormattingEnabled = true;
-            this.comboBoxKontr2.Location = new System.Drawing.Point(680, 27);
+            this.comboBoxKontr2.Location = new System.Drawing.Point(683, 65);
             this.comboBoxKontr2.Name = "comboBoxKontr2";
             this.comboBoxKontr2.Size = new System.Drawing.Size(195, 29);
             this.comboBoxKontr2.TabIndex = 18;
@@ -253,7 +256,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::WinFormsProekt.Properties.Resources.create;
-            this.pictureBox4.Location = new System.Drawing.Point(634, 128);
+            this.pictureBox4.Location = new System.Drawing.Point(637, 166);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(40, 40);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -263,7 +266,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WinFormsProekt.Properties.Resources.create;
-            this.pictureBox1.Location = new System.Drawing.Point(157, 128);
+            this.pictureBox1.Location = new System.Drawing.Point(160, 166);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(40, 40);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -273,19 +276,52 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::WinFormsProekt.Properties.Resources.save;
-            this.pictureBox2.Location = new System.Drawing.Point(714, 591);
+            this.pictureBox2.Location = new System.Drawing.Point(330, 629);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(40, 40);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 22;
             this.pictureBox2.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(403, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 21);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Заявка №";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(484, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 21);
+            this.label5.TabIndex = 24;
+            // 
+            // buttonSaceChanges
+            // 
+            this.buttonSaceChanges.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonSaceChanges.Location = new System.Drawing.Point(376, 629);
+            this.buttonSaceChanges.Name = "buttonSaceChanges";
+            this.buttonSaceChanges.Size = new System.Drawing.Size(185, 40);
+            this.buttonSaceChanges.TabIndex = 25;
+            this.buttonSaceChanges.Text = "Сохранить изменения";
+            this.buttonSaceChanges.UseVisualStyleBackColor = true;
+            this.buttonSaceChanges.Click += new System.EventHandler(this.buttonSaceChanges_Click);
+            // 
             // ZayavkaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(224)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(918, 656);
+            this.ClientSize = new System.Drawing.Size(918, 699);
+            this.Controls.Add(this.buttonSaceChanges);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox4);
@@ -344,5 +380,8 @@
         private PictureBox pictureBox4;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
+        public Label label4;
+        public Label label5;
+        private Button buttonSaceChanges;
     }
 }

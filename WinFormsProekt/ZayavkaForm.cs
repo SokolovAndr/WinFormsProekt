@@ -111,5 +111,10 @@ namespace WinFormsProekt
             string vybor = comboBoxKontr2.SelectedItem.ToString();
             textBox2.Text = vybor;
         }
+
+        private void buttonSaceChanges_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -66,6 +66,9 @@ namespace WinFormsProekt
             SingleTon.User = user;
             Main main = new Main();
             //Hide();
+
+            textBoxLogin.Text = null;
+            textBoxParol.Text = null;
             main.Show();
 
         }

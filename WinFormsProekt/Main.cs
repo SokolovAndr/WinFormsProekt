@@ -74,12 +74,14 @@ namespace WinFormsProekt
             }
             else if (dialogResult == DialogResult.No)
             {
-                Close();
+                return;
             } 
         }
 
         private void buttonRedact_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Вы уверены что хотите изменить заявку?", "Изменение заявки", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
             {
                 string connectString = "Data Source=WinFormsProekt.db;";                    //1.создание строки подключения к БД
                 using (SqliteConnection myConnection = new SqliteConnection(connectString)) //2.создание экземпляра класса для подключения к БД + using
@@ -93,26 +95,63 @@ namespace WinFormsProekt
 
                     List<string[]> data = new List<string[]>();                             //9.будем читать данные из БД. Каждая строка - строковый массив
                     ZayavkaForm zayavka = new ZayavkaForm();                                //10.Инициализация формы
-                    zayavka.ShowDialog();                                                   //11.Вывод формы на экрна
+                                                                                            //11.Вывод формы на экрна
                     while (reader.Read())                                                   //12.Чтение и заполнение элементов на форме
                     {
-                        data.Add(new string[6]);
+                        data.Add(new string[7]);
 
-                        //data[data.Count - 1][0] = zayavka.id;
-                        data[data.Count - 1][0] = zayavka.textBox1.Text;
-                        data[data.Count - 1][1] = zayavka.textBox2.Text;
-                        data[data.Count - 1][2] = zayavka.comboBox1.Text;
-                        data[data.Count - 1][3] = zayavka.dateTimePicker1.Text;
-                        data[data.Count - 1][4] = zayavka.textBoxZapros.Text;
-                        data[data.Count - 1][5] = zayavka.textBoxOtvet.Text;
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                        data[data.Count - 1][6] = reader[6].ToString();
 
                     }
                     reader.Close();
-                    myConnection.Close();
+                    //myConnection.Close();
 
+                    foreach (string[] s in data)
+                    {
+                        zayavka.label5.Text = s[0];
+                        zayavka.textBox1.Text = s[1];
+                        zayavka.comboBoxKontr.Text = s[1];
+                        zayavka.textBox2.Text = s[2];
+                        zayavka.comboBoxKontr2.Text = s[2];
+                        zayavka.comboBox1.Text = s[3];
+                        zayavka.dateTimePicker1.Text = s[4];
+                        zayavka.textBoxZapros.Text = s[6];
+                        zayavka.textBoxOtvet.Text = s[5];
+                    }
+
+                    zayavka.ShowDialog();
+
+
+                    //string sql = $"UPDATE Zayavki SET Status = comboBox1.Text WHERE id = {id}"; 
+                    //SqliteCommand cmd = new SqliteCommand(sql, myConnection);
+                    //cmd.ExecuteNonQuery();
+                    //myConnection.Close();
+                    //MessageBox.Show($"Заявка № {id} изменена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+                    //myConnection.Close();
                 }
+                //using (SqliteConnection myConnection = new SqliteConnection(connectString)) //2.создание экземпляра класса для подключения к БД + using
+                //{
+                //    myConnection.Open();                                                    //3.Откроем подключение
+                //    int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());    //4.считали id из dataGridView по выбранной строке
+                //    string query = $"UPDATE * FROM Zayavki WHERE Id = {id}";                 //5.запрос в БД по id Заявки
+                //    SqliteCommand command = new SqliteCommand(query, myConnection);
 
+                //}
             }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
         }
         private void LoadData()
         {
@@ -319,25 +358,6 @@ namespace WinFormsProekt
             PrintTable();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                VisitMyGitHub();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Unable to open link that was clicked.");
-            }
-        }
-
-        private void VisitMyGitHub()
-        {
-            linkLabel1.LinkVisited = true;
-            System.Diagnostics.Process.Start("IExplore.exe", "http://github.com/SokolovAndr");
-        }
-
-
-        //Цветовая индикация кнопок конец
+                //Цветовая индикация кнопок конец
     }
 }
