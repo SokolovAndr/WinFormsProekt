@@ -11,6 +11,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using WinFormsProekt.Models;
 using Microsoft.Data.Sqlite;
 using System.Diagnostics;
+using System.Data.SqlClient;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace WinFormsProekt
 {
@@ -38,6 +43,9 @@ namespace WinFormsProekt
                 SingleTon.DB.Zayavki.Add(zayavki);
                 SingleTon.DB.SaveChanges();
             }
+            dataGridView1.Rows.Clear();
+            LoadData();
+            checkBox1.Checked = false;
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
@@ -57,6 +65,10 @@ namespace WinFormsProekt
 
                     MessageBox.Show($"Заявка № {id} удалена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+
+                dataGridView1.Rows.Clear();
+                LoadData();
+                checkBox1.Checked = false;
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -118,15 +130,28 @@ namespace WinFormsProekt
                         {
                             myConnection2.Open();
 
-                            string sql = $"UPDATE Zayavki SET " +
-                                $"Client ={zayavka.textBox1.Text}, " +
-                                $"Postavchik = {zayavka.textBox2.Text}," +
-                                $"Status = {zayavka.comboBox1.Text}, " +
-                                $"Zapros = {zayavka.textBoxZapros.Text}," +
-                                $"Otvet = {zayavka.textBoxOtvet.Text} WHERE id = {id}";
 
-                            SqliteCommand cmd = new SqliteCommand(sql, myConnection2);
-                            cmd.ExecuteNonQuery();
+                            //вариант 1
+                            //SqliteParameter nameParam = new SqliteParameter("@nameParam", SqliteType.Text, 50, zayavka.textBox1.Text);
+
+                            string sql = $"UPDATE Zayavki SET Client =@nameParam WHERE id = {id}";
+
+                            SqliteCommand command2 = new SqliteCommand(sql, myConnection2);
+
+                            SqliteParameter nameParam = new SqliteParameter("@nameParam", zayavka.textBox1.Text);
+                            command2.Parameters.Add(nameParam);
+
+                            //вариант 2
+                            //command.Parameters.AddWithValue("@nameParam2", zayavka.textBox1.Text);
+
+                            //string sql = $"UPDATE Zayavki SET Client =@nameParam WHERE id = {id}";
+
+                            //$"Status = {zayavka.comboBox1.Text}, " +
+                            //$"Zapros = {zayavka.textBoxZapros.Text}," +
+                            //$"Otvet = {zayavka.textBoxOtvet.Text} WHERE id = {id}";
+
+                            //SqliteCommand cmd = new SqliteCommand(sql, myConnection2);
+                            command2.ExecuteNonQuery();
 
                             MessageBox.Show($"Заявка № {id} изменена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             myConnection2.Close();
@@ -137,6 +162,11 @@ namespace WinFormsProekt
                         }
                     }
                 }
+
+                dataGridView1.Rows.Clear();
+                LoadData();
+                checkBox1.Checked = false;
+
             }
             else if (dialogResult == DialogResult.No)
             {
