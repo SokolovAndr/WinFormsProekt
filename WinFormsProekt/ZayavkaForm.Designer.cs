@@ -311,7 +311,7 @@
             this.buttonSaveChanges.TabIndex = 25;
             this.buttonSaveChanges.Text = "Сохранить изменения";
             this.buttonSaveChanges.UseVisualStyleBackColor = true;
-            this.buttonSaveChanges.Click += new System.EventHandler(this.buttonSaceChanges_Click);
+            this.buttonSaveChanges.Click += new System.EventHandler(this.buttonSaveChanges_Click);
             // 
             // ZayavkaForm
             // 

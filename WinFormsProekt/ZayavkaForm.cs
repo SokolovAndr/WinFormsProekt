@@ -68,8 +68,31 @@ namespace WinFormsProekt
                 SingleTon.DB.Kontragents.Add(kontragents);
                 SingleTon.DB.SaveChanges();
             }
+            comboBox1.Items.Clear();
+            comboBoxKontr.Items.Clear();
+            comboBoxKontr2.Items.Clear();
+            ZapolnenieComboBoxov();
         }
 
+        private void comboBoxKontr_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string vybor = comboBoxKontr.SelectedItem.ToString();
+            textBox1.Text = vybor;
+        }
+
+        private void comboBoxKontr2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string vybor = comboBoxKontr2.SelectedItem.ToString();
+            textBox2.Text = vybor;
+        }
+
+        private void buttonSaveChanges_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+        
+        #region "ZalivkaKnopok"
         private void button2_MouseEnter(object sender, EventArgs e)
         {
             button2.BackColor = Color.LightGreen;
@@ -89,7 +112,7 @@ namespace WinFormsProekt
         {
             button1.BackColor = Color.White;
         }
-        
+
         private void buttonSave_MouseEnter(object sender, EventArgs e)
         {
             buttonSave.BackColor = Color.LightGreen;
@@ -100,22 +123,6 @@ namespace WinFormsProekt
             buttonSave.BackColor = Color.White;
         }
 
-        private void comboBoxKontr_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string vybor = comboBoxKontr.SelectedItem.ToString();
-            textBox1.Text = vybor;
-        }
-
-        private void comboBoxKontr2_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string vybor = comboBoxKontr2.SelectedItem.ToString();
-            textBox2.Text = vybor;
-        }
-
-        private void buttonSaceChanges_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
+        #endregion
     }
 }

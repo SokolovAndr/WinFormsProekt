@@ -77,6 +77,109 @@ namespace WinFormsProekt
         }
         private void buttonRedact_Click(object sender, EventArgs e)
         {
+            //DialogResult dialogResult = MessageBox.Show("Вы уверены что хотите изменить заявку?", "Изменение заявки", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+            //    string connectString = "Data Source=WinFormsProekt.db;";                    //1.создание строки подключения к БД
+            //    using (SqliteConnection myConnection = new SqliteConnection(connectString)) //2.создание экземпляра класса для подключения к БД + using
+            //    {
+            //        myConnection.Open();                                                    //3.Откроем подключение
+            //        int id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());    //4.считали id из dataGridView по выбранной строке
+            //        string query = $"SELECT * FROM Zayavki WHERE Id = {id}";                 //5.запрос в БД по id Заявки
+            //        SqliteCommand command = new SqliteCommand(query, myConnection);         //6.создаем экземпляр класса SqlCommand и
+            //                                                                                //7.передаем ему в конструктор запрос и объект который устанавливает запрос с БД
+            //        SqliteDataReader reader = command.ExecuteReader();                      //8.создаем экземпляр клааса sqlreqder для чтения данных из БД
+
+            //        List<string[]> data = new List<string[]>();                             //9.будем читать данные из БД. Каждая строка - строковый массив
+            //        ZayavkaForm zayavka = new ZayavkaForm();                                //10.Инициализация формы
+            //                                                                                //11.Вывод формы на экрна
+            //        while (reader.Read())                                                   //12.Чтение и заполнение элементов на форме
+            //        {
+            //            data.Add(new string[7]);
+
+            //            data[data.Count - 1][0] = reader[0].ToString();
+            //            data[data.Count - 1][1] = reader[1].ToString();
+            //            data[data.Count - 1][2] = reader[2].ToString();
+            //            data[data.Count - 1][3] = reader[3].ToString();
+            //            data[data.Count - 1][4] = reader[4].ToString();
+            //            data[data.Count - 1][5] = reader[5].ToString();
+            //            data[data.Count - 1][6] = reader[6].ToString();
+
+            //        }
+            //        reader.Close();
+            //        myConnection.Close();
+
+            //        foreach (string[] s in data)
+            //        {
+            //            zayavka.label5.Text = s[0];
+            //            zayavka.textBox1.Text = s[1];
+            //            zayavka.comboBoxKontr.Text = s[1];
+            //            zayavka.textBox2.Text = s[2];
+            //            zayavka.comboBoxKontr2.Text = s[2];
+            //            zayavka.comboBox1.Text = s[3];
+            //            zayavka.dateTimePicker1.Text = s[4];
+            //            zayavka.textBoxZapros.Text = s[6];
+            //            zayavka.textBoxOtvet.Text = s[5];
+            //        }
+
+            //        zayavka.ShowDialog();
+
+            //        using (SqliteConnection myConnection2 = new SqliteConnection(connectString))
+            //        {
+            //            try
+            //            {
+            //                myConnection2.Open();
+
+            //                string sql = $"UPDATE Zayavki SET " +
+            //                    $"Client = @nameParam, " +
+            //                    $"Postavchik = @nameParam2," +
+            //                    $"Status = @nameParam3," +
+            //                    $"Zapros = @nameParam4," +
+            //                    $"Otvet =  @nameParam5 WHERE id = {id}";
+
+            //                SqliteCommand command2 = new SqliteCommand(sql, myConnection2);
+
+            //                SqliteParameter nameParam = new SqliteParameter("@nameParam", zayavka.textBox1.Text);
+            //                command2.Parameters.Add(nameParam);
+
+            //                SqliteParameter nameParam2 = new SqliteParameter("@nameParam2", zayavka.textBox2.Text);
+            //                command2.Parameters.Add(nameParam2);
+
+            //                SqliteParameter nameParam3 = new SqliteParameter("@nameParam3", zayavka.comboBox1.Text);
+            //                command2.Parameters.Add(nameParam3);
+
+            //                SqliteParameter nameParam4 = new SqliteParameter("@nameParam4", zayavka.textBoxZapros.Text);
+            //                command2.Parameters.Add(nameParam4);
+
+            //                SqliteParameter nameParam5 = new SqliteParameter("@nameParam5", zayavka.textBoxOtvet.Text);
+            //                command2.Parameters.Add(nameParam5);
+
+            //                command2.ExecuteNonQuery();
+
+            //                MessageBox.Show($"Заявка № {id} изменена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //                myConnection2.Close();
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                MessageBox.Show(ex.Message);
+            //            }
+            //        }
+            //    }
+
+            //    dataGridView1.Rows.Clear();
+            //    LoadData();
+            //    checkBox1.Checked = false;
+
+            //}
+            //else if (dialogResult == DialogResult.No)
+            //{
+            //    return;
+            //}
+            Change();
+        }
+
+        private void Change()
+        {
             DialogResult dialogResult = MessageBox.Show("Вы уверены что хотите изменить заявку?", "Изменение заявки", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
@@ -130,27 +233,30 @@ namespace WinFormsProekt
                         {
                             myConnection2.Open();
 
-
-                            //вариант 1
-                            //SqliteParameter nameParam = new SqliteParameter("@nameParam", SqliteType.Text, 50, zayavka.textBox1.Text);
-
-                            string sql = $"UPDATE Zayavki SET Client =@nameParam WHERE id = {id}";
+                            string sql = $"UPDATE Zayavki SET " +
+                                $"Client = @nameParam, " +
+                                $"Postavchik = @nameParam2," +
+                                $"Status = @nameParam3," +
+                                $"Zapros = @nameParam4," +
+                                $"Otvet =  @nameParam5 WHERE id = {id}";
 
                             SqliteCommand command2 = new SqliteCommand(sql, myConnection2);
 
                             SqliteParameter nameParam = new SqliteParameter("@nameParam", zayavka.textBox1.Text);
                             command2.Parameters.Add(nameParam);
 
-                            //вариант 2
-                            //command.Parameters.AddWithValue("@nameParam2", zayavka.textBox1.Text);
+                            SqliteParameter nameParam2 = new SqliteParameter("@nameParam2", zayavka.textBox2.Text);
+                            command2.Parameters.Add(nameParam2);
 
-                            //string sql = $"UPDATE Zayavki SET Client =@nameParam WHERE id = {id}";
+                            SqliteParameter nameParam3 = new SqliteParameter("@nameParam3", zayavka.comboBox1.Text);
+                            command2.Parameters.Add(nameParam3);
 
-                            //$"Status = {zayavka.comboBox1.Text}, " +
-                            //$"Zapros = {zayavka.textBoxZapros.Text}," +
-                            //$"Otvet = {zayavka.textBoxOtvet.Text} WHERE id = {id}";
+                            SqliteParameter nameParam4 = new SqliteParameter("@nameParam4", zayavka.textBoxZapros.Text);
+                            command2.Parameters.Add(nameParam4);
 
-                            //SqliteCommand cmd = new SqliteCommand(sql, myConnection2);
+                            SqliteParameter nameParam5 = new SqliteParameter("@nameParam5", zayavka.textBoxOtvet.Text);
+                            command2.Parameters.Add(nameParam5);
+
                             command2.ExecuteNonQuery();
 
                             MessageBox.Show($"Заявка № {id} изменена!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -234,12 +340,6 @@ namespace WinFormsProekt
         {
             //Timer.Stop();
             Close();
-        }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //ZayavkaForm zayavka = new ZayavkaForm();
-            //zayavka.Show();
-
         }
         private void PrintTable()
         {
@@ -328,7 +428,8 @@ namespace WinFormsProekt
 
             PrintTable();
         }
-        //Цветовая индикация кнопок начало
+        
+        #region "ZalivkaKnopok"
         private void buttonSozdat_MouseEnter(object sender, EventArgs e)
         {
             buttonSozdat.BackColor = Color.LightGreen;
@@ -369,6 +470,11 @@ namespace WinFormsProekt
         {
             buttonShowAll.BackColor = Color.White;
         }
-        //Цветовая индикация кнопок конец
+        #endregion
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Change();
+        }
     }
 }
