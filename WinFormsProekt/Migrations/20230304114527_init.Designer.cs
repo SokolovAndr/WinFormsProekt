@@ -11,8 +11,8 @@ using WinFormsProekt;
 namespace WinFormsProekt.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20230201204045_Creation2")]
-    partial class Creation2
+    [Migration("20230304114527_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
